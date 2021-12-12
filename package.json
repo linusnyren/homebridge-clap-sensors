@@ -1,0 +1,24 @@
+{
+  "name": "homebridge-clap-sensors",
+  "version": "1.0.0",
+  "description": "Clap sensor for HomeKit via Homebridge.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "homekit",
+    "homebridge",
+    "homebridge-plugin",
+    "clapsensor",
+    "clapsensors"
+  ],
+  "author": "Linus Nyrén",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.0.0",
+    "homebridge": ">=0.2.0"
+  },
+  "dependencies": {
+    "clap-detector": "^0.5.3"
+  }
+}
