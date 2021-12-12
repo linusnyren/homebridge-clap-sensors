@@ -23,7 +23,7 @@ npm install -g homebridge-clap-sensors
 
 ## Configuration
 
-Add the following to the `accessories` part of your Homebridge `config.json` file:
+Add the following to the `platforms` part of your Homebridge `config.json` file:
 
 ```
 
