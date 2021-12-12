@@ -18,22 +18,22 @@ function clapSensors(log, config) {
   this.clap = new ClapDetector.default();
 
   this.sensors.forEach(sensor => {
-    registerSensor(sensor, this.clap)
+    registerSensor(sensor, this.clap, this.clapInterval, this.resetAfter);
   });
 
 }
 
-const registerSensor = (sensor, clap) => {
+const registerSensor = (sensor, clap, clapInterval, resetAfter) => {
   const uuid = Hap.uuid.generate(sensor.name);
   const accessory = new Homebridge.platformAccessory(sensor.name, uuid);
   const service = new Service.MotionSensor(sensor.name);
 
-  clap.addClapsListener(claps => {
+  clap.addClapsListener(() => {
       service.setCharacteristic(Characteristic.MotionDetected, true);
       setTimeout(() => {
         service.setCharacteristic(Characteristic.MotionDetected, false);
-      }, 1000)
-  }, { number: sensor.numberOfClaps, delay: sensor.numberOfClaps == 1 ? 0 : this.clapInterval })
+      }, resetAfter)
+  }, { number: sensor.numberOfClaps, delay: sensor.numberOfClaps == 1 ? 0 : clapInterval })
 
   accessory.getService(Hap.Service.AccessoryInformation)
     .setCharacteristic(Hap.Characteristic.Manufacturer, "Linus Nyrén")
