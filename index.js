@@ -28,9 +28,7 @@ const registerSensor = (sensor, clap) => {
   const accessory = new Homebridge.platformAccessory(sensor.name, uuid);
   const service = new Service.MotionSensor(sensor.name);
 
-  console.log(this.resetAfter);
   clap.addClapsListener(claps => {
-    console.log(sensor, claps);
       service.setCharacteristic(Characteristic.MotionDetected, true);
       setTimeout(() => {
         service.setCharacteristic(Characteristic.MotionDetected, false);
